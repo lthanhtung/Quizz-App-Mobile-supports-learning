@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.quizz_app.ui.home.HomeFragment"
+        android:label="Trang chủ"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/C"
+        android:name="com.example.quizz_app.ui.c.CFragment"
+        android:label="C"
+        tools:layout="@layout/fragment_c" />
+
+    <fragment
+        android:id="@+id/Java"
+        android:name="com.example.quizz_app.ui.java.JavaFragment"
+        android:label="Java"
+        tools:layout="@layout/fragment_java" />
+
+    <fragment
+        android:id="@+id/php"
+        android:name="com.example.quizz_app.ui.php.PhpFragment"
+        android:label="PHP"
+        tools:layout="@layout/fragment_php" />
+
+    <fragment
+        android:id="@+id/python"
+        android:name="com.example.quizz_app.ui.python.PythonFragment"
+        android:label="Python"
+        tools:layout="@layout/fragment_python" />
+</navigation>
