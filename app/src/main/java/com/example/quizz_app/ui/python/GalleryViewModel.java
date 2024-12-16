@@ -10,7 +10,7 @@ public class GalleryViewModel extends ViewModel {
 
     public GalleryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Các câu hỏi về ngôn ngữ python");
+        mText.setValue("Các dạng câu hỏi về ngôn ngữ python");
     }
 
     public LiveData<String> getText() {
