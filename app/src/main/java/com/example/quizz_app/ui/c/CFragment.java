@@ -16,11 +16,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.quizz_app.R;
 import com.example.quizz_app.databinding.FragmentCBinding;
 import com.example.quizz_app.databinding.FragmentPythonBinding;
+import com.example.quizz_app.ui.BaiTap.BaiHocActivity;
 import com.example.quizz_app.ui.Slide.ScreenSlideActivity;
 
 public class CFragment extends Fragment {
 
     Button btnRandom;
+    Button btnBaiHoc;
     private FragmentCBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,6 +36,16 @@ public class CFragment extends Fragment {
         final TextView textView = binding.textGallery;
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         // Lấy các button từ layout
+//Button Bài Tập
+        btnBaiHoc = binding.getRoot().findViewById(R.id.button_ChuDe);
+        btnBaiHoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pageBaiTap = new Intent(getActivity(), BaiHocActivity.class);
+                startActivity(pageBaiTap);
+            }
+        });
+//Button RanDom
         btnRandom = binding.getRoot().findViewById(R.id.buttonRandom);
         btnRandom.setOnClickListener(new View.OnClickListener() {
             @Override

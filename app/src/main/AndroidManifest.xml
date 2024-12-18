@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Quizz_app"
         tools:targetApi="31">
         <activity
+            android:name=".ui.BaiTap.BaiHocActivity"
+            android:exported="false"
+            android:label="@string/title_activity_bai_hoc"
+            android:theme="@style/Theme.Quizz_app.NoActionBar" />
+        <activity
             android:name=".ui.Slide.ScreenSlideActivity"
             android:exported="false" />
         <activity
