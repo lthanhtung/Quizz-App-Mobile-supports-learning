@@ -10,6 +10,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.quizz_app.R;
+import com.example.quizz_app.ui.CauHoi.CauHoi;
+import com.example.quizz_app.ui.CauHoi.CauHoiController;
+
+import java.util.ArrayList;
 
 public class ScreenSlideActivity extends FragmentActivity {
     /**
@@ -28,6 +32,10 @@ public class ScreenSlideActivity extends FragmentActivity {
      */
     private FragmentStateAdapter pagerAdapter;
 
+    //Cơ sở dữ liệu
+    CauHoiController cauHoiController;
+    ArrayList<CauHoi> listCauHoi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +46,15 @@ public class ScreenSlideActivity extends FragmentActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
+
+//        // Nhận thông tin mã bài học từ Intent BaiHocActivity
+//        String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
+//        cauHoiController = new CauHoiController(this);
+//        listCauHoi = new ArrayList<CauHoi>();
+//        listCauHoi = cauHoiController.getCauHoi(maBaiHoc);
     }
+//Tạo phương th
+
 
     @Override
     public void onBackPressed() {

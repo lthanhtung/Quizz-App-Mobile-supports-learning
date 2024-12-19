@@ -39,6 +39,7 @@ public class BaiHocActivity extends AppCompatActivity {
     // Khai báo ListView
     ListView ListView_BaiHoc;
     ArrayList<String> List_BaiHoc;
+    ArrayList<String> List_MaBaiHoc;
     ArrayAdapter<String> adapter;
 
     @Override
@@ -61,6 +62,7 @@ public class BaiHocActivity extends AppCompatActivity {
 
         ListView_BaiHoc = findViewById(R.id.ListView_BaiHoc);
         List_BaiHoc = new ArrayList<>();
+        List_MaBaiHoc = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, List_BaiHoc);
         ListView_BaiHoc.setAdapter(adapter);
 
@@ -75,10 +77,13 @@ public class BaiHocActivity extends AppCompatActivity {
 
         ListView_BaiHoc.setOnItemClickListener((parent, view, position, id) -> {
             String baiHocDetail = List_BaiHoc.get(position);
-            String message = "Bạn đã chọn vị trí: " + (position + 1) + ", nội dung: " + baiHocDetail;
+            String maBaiHoc = List_MaBaiHoc.get(position);//Lấy mã bài học tương ứng với mỗi dòng
+            //String message = "Bạn đã chọn vị trí: " + (position + 1) + ", nội dung: " + baiHocDetail;
+            String message = "Bạn đã chọn: " + baiHocDetail;
+            //String idBaihoc = "Bạn đã chọn: " + maBaiHoc;
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(BaiHocActivity.this, ScreenSlideActivity.class);
-            intent.putExtra("BaiHocDetail", baiHocDetail);
+            intent.putExtra("MaBaiHoc",maBaiHoc);
             startActivity(intent);
         });
     }
@@ -88,6 +93,8 @@ public class BaiHocActivity extends AppCompatActivity {
                 null, null, null, null);
 
         List_BaiHoc.clear();
+        List_MaBaiHoc.clear();//Xóa dữ liệu cũ
+
         String data = "";
         int dem = 1;
 
@@ -96,6 +103,7 @@ public class BaiHocActivity extends AppCompatActivity {
                 data = "Bài " + dem + ": " + c.getString(2); // Cột 2 là tên bài học
                 dem++;
                 List_BaiHoc.add(data);
+                List_MaBaiHoc.add(c.getString(0));//Trường chứ mã bài học
             } while (c.moveToNext());
         }
         c.close();
