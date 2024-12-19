@@ -40,6 +40,7 @@ public class PhpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent pageBaiTap = new Intent(getActivity(), BaiHocActivity.class);
+                pageBaiTap.putExtra("MaMonHoc", "MH03"); // Truyền thông tin môn học
                 startActivity(pageBaiTap);
             }
         });
@@ -49,6 +50,7 @@ public class PhpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent pageCauHoi = new Intent(getActivity(), ScreenSlideActivity.class);
+
                 startActivity(pageCauHoi);
             }
         });

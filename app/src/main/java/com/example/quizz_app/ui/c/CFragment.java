@@ -37,11 +37,13 @@ public class CFragment extends Fragment {
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         // Lấy các button từ layout
 //Button Bài Tập
+        // Button Bài Tập
         btnBaiHoc = binding.getRoot().findViewById(R.id.button_ChuDe);
         btnBaiHoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pageBaiTap = new Intent(getActivity(), BaiHocActivity.class);
+                pageBaiTap.putExtra("MaMonHoc", "MH01"); // Truyền thông tin môn học
                 startActivity(pageBaiTap);
             }
         });

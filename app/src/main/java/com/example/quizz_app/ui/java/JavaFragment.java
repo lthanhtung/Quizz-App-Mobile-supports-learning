@@ -43,6 +43,7 @@ public class JavaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent pageBaiTap = new Intent(getActivity(), BaiHocActivity.class);
+                pageBaiTap.putExtra("MaMonHoc", "MH02"); // Truyền thông tin môn học
                 startActivity(pageBaiTap);
             }
         });
@@ -55,10 +56,6 @@ public class JavaFragment extends Fragment {
                 startActivity(pageCauHoi);
             }
         });
-
-
-
-
         return root;
     }
 

@@ -38,6 +38,7 @@ public class PythonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent pageBaiTap = new Intent(getActivity(), BaiHocActivity.class);
+                pageBaiTap.putExtra("MaMonHoc", "MH04"); // Truyền thông tin môn học
                 startActivity(pageBaiTap);
             }
         });
