@@ -19,7 +19,7 @@ public class ScreenSlideActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
+    private int SoCauhoi;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -47,14 +47,18 @@ public class ScreenSlideActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
-//        // Nhận thông tin mã bài học từ Intent BaiHocActivity
-//        String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
-//        cauHoiController = new CauHoiController(this);
-//        listCauHoi = new ArrayList<CauHoi>();
-//        listCauHoi = cauHoiController.getCauHoi(maBaiHoc);
-    }
-//Tạo phương th
+        // Nhận thông tin mã bài học từ Intent BaiHocActivity
+        String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
+        cauHoiController = new CauHoiController(this);
+        listCauHoi = new ArrayList<CauHoi>();
+        listCauHoi = cauHoiController.getCauHoi(maBaiHoc);
+        SoCauhoi = listCauHoi.size();
 
+    }
+//Tạo 1 phương thức để fragment lấy được data của từ activity
+    public ArrayList<CauHoi> getData(){
+        return listCauHoi;
+    }
 
     @Override
     public void onBackPressed() {
@@ -79,12 +83,13 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         @Override
         public Fragment createFragment(int position) {
-            return new ScreenSlidePageFragment();
+
+            return ScreenSlidePageFragment.Create(position);
         }
 
         @Override
         public int getItemCount() {
-            return NUM_PAGES;
+            return SoCauhoi;
         }
         }
     public class ZoomOutPageTransformer implements ViewPager2.PageTransformer {
