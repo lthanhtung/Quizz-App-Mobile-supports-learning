@@ -53,6 +53,7 @@ public class CFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent pageCauHoi = new Intent(getActivity(), ScreenSlideActivity.class);
+                pageCauHoi.putExtra("MaMonHoc", "MH01"); // Truyền thông tin môn học
                 startActivity(pageCauHoi);
             }
         });

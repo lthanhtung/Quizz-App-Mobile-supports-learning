@@ -49,10 +49,18 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         // Nhận thông tin mã bài học từ Intent BaiHocActivity
         String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
+        String maMonHoc = getIntent().getStringExtra("MaMonHoc");
         cauHoiController = new CauHoiController(this);
         listCauHoi = new ArrayList<CauHoi>();
-        listCauHoi = cauHoiController.getCauHoi(maBaiHoc);
-        SoCauhoi = listCauHoi.size();
+        if (maBaiHoc !=null){
+            listCauHoi = cauHoiController.getCauHoi(maBaiHoc);
+            SoCauhoi = listCauHoi.size();
+        }
+        else {
+            listCauHoi = cauHoiController.getCauHoiNgauNhien(maMonHoc);
+            SoCauhoi = listCauHoi.size();
+        }
+
 
     }
 //Tạo 1 phương thức để fragment lấy được data của từ activity
