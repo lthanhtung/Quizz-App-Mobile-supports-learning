@@ -8,8 +8,18 @@ public class CauHoi {
     private String DapAn_C;
     private String DapAn_D;
     private String KetQua;
+    private String TraLoi = "";
+    public int choiceID = -1;
 
-    public CauHoi(String maBaiHoc, String cauHoi, String dapAn_A, String dapAn_B, String dapAn_C, String dapAn_D, String ketQua) {
+    public String getTraLoi() {
+        return TraLoi;
+    }
+
+    public void setTraLoi(String traLoi) {
+        TraLoi = traLoi;
+    }
+
+    public CauHoi(String maBaiHoc, String cauHoi, String dapAn_A, String dapAn_B, String dapAn_C, String dapAn_D, String ketQua, String traLoi) {
         MaBaiHoc = maBaiHoc;
         CauHoi = cauHoi;
         DapAn_A = dapAn_A;
@@ -17,6 +27,7 @@ public class CauHoi {
         DapAn_C = dapAn_C;
         DapAn_D = dapAn_D;
         KetQua = ketQua;
+        TraLoi = traLoi;
     }
 
     public CauHoi() {

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizz_app.R;
 import com.example.quizz_app.ui.CauHoi.CauHoi;
@@ -76,9 +77,35 @@ radioGroup = (RadioGroup) rootView.findViewById(R.id.radGroup);
         super.onActivityCreated(savedInstanceState);
         tvNum.setText("Câu " + (mPageNumber+1));
         tvCauHoi.setText(ListcauHoi.get(mPageNumber).getCauHoi());
-        rad_A.setText(ListcauHoi.get(mPageNumber).getDapAn_A());
-        rad_B.setText(ListcauHoi.get(mPageNumber).getDapAn_B());
-        rad_C.setText(ListcauHoi.get(mPageNumber).getDapAn_C());
-        rad_D.setText(ListcauHoi.get(mPageNumber).getDapAn_D());
+        rad_A.setText(getItem(mPageNumber).getDapAn_A());
+        rad_B.setText(getItem(mPageNumber).getDapAn_B());
+        rad_C.setText(getItem(mPageNumber).getDapAn_C());
+        rad_D.setText(getItem(mPageNumber).getDapAn_D());
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                getItem(mPageNumber).choiceID = checkedId;
+                getItem(mPageNumber).setTraLoi(getChoiceFromID(checkedId));
+               // Toast.makeText(getActivity(), "Đây là đáp án"+checkedId, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public CauHoi getItem(int position){
+        return ListcauHoi.get(position);
+    }
+
+    //Lấy giá trị (vị trí) radiogroup chuyển thành đáp án A/B/C/D
+    private String getChoiceFromID(int ID){
+        if(ID == R.id.radA){
+            return "A";
+        } else if (ID == R.id.radB) {
+            return "B";
+        } else if (ID == R.id.radC) {
+            return "C";
+        } else if (ID == R.id.radD) {
+            return "D";
+        }else return "";
     }
 }

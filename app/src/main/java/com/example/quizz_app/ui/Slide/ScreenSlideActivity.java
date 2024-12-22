@@ -1,7 +1,12 @@
 package com.example.quizz_app.ui.Slide;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,6 +37,8 @@ public class ScreenSlideActivity extends FragmentActivity {
      */
     private FragmentStateAdapter pagerAdapter;
 
+    TextView tvKiemTra;
+
     //Cơ sở dữ liệu
     CauHoiController cauHoiController;
     ArrayList<CauHoi> listCauHoi;
@@ -47,6 +54,13 @@ public class ScreenSlideActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
+        tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
+        tvKiemTra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer();
+            }
+        });
         // Nhận thông tin mã bài học từ Intent BaiHocActivity
         String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
         String maMonHoc = getIntent().getStringExtra("MaMonHoc");
@@ -134,5 +148,42 @@ public class ScreenSlideActivity extends FragmentActivity {
                 page.setAlpha(0f);
             }
         }
+    }
+
+    public  void checkAnswer(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.check_answer_dialog);
+        dialog.setTitle("Danh sách câu trả lời");
+
+        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
+        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
+        gvLsQuestion.setAdapter(answerAdapter);
+
+        //Huỷ hộp thoại
+        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                viewPager.setCurrentItem(position);
+                dialog.dismiss();
+            }
+        });
+
+        Button btnCancle, btnFinish;
+        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
+        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ///
+            }
+        });
+
+        dialog.show();
     }
 }
