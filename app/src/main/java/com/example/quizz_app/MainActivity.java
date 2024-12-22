@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.quizz_app.ui.CauHoi.DBHelper;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -15,6 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizz_app.databinding.ActivityMainBinding;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        DBHelper dbHelper = new DBHelper(this);
+        try {
+            dbHelper.createDataBase();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
