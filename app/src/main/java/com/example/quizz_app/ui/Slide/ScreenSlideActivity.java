@@ -1,7 +1,9 @@
 package com.example.quizz_app.ui.Slide;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import com.example.quizz_app.ui.CauHoi.CauHoi;
 import com.example.quizz_app.ui.CauHoi.CauHoiController;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class ScreenSlideActivity extends FragmentActivity {
     /**
@@ -36,12 +39,15 @@ public class ScreenSlideActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private FragmentStateAdapter pagerAdapter;
+    public int checkAns = 0;
 
-    TextView tvKiemTra;
+    TextView tvKiemTra, tvTimer, tvXemDiem;
 
     //Cơ sở dữ liệu
     CauHoiController cauHoiController;
     ArrayList<CauHoi> listCauHoi;
+    CounterClass timer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +60,33 @@ public class ScreenSlideActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
+
+        timer = new CounterClass(60*1000, 1000);
         tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
+        tvTimer = (TextView) findViewById(R.id.tvTimer);
+        tvXemDiem = (TextView) findViewById(R.id.tvScore) ;
         tvKiemTra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkAnswer();
             }
         });
+        tvTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        tvXemDiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ScreenSlideActivity.this, TestDoneActivity.class);
+                intent1.putExtra("list CauHoi", listCauHoi);
+                startActivity(intent1);
+            }
+        });
+
+        timer.start();
         // Nhận thông tin mã bài học từ Intent BaiHocActivity
         String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
         String maMonHoc = getIntent().getStringExtra("MaMonHoc");
@@ -106,7 +132,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         @Override
         public Fragment createFragment(int position) {
 
-            return ScreenSlidePageFragment.Create(position);
+            return ScreenSlidePageFragment.Create(position, checkAns);
         }
 
         @Override
@@ -180,10 +206,50 @@ public class ScreenSlideActivity extends FragmentActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ///
+                timer.cancel();
+                result();
+                dialog.dismiss();
             }
         });
 
         dialog.show();
+    }
+
+    public void result(){
+        checkAns = 1;
+        //if (viewPager.getCurrentItem() >= 5) viewPager.setCurrentItem(viewPager.getCurrentItem()-4);
+        //else if (viewPager.getCurrentItem() <5) viewPager.setCurrentItem(viewPager.getCurrentItem()+4);
+        viewPager.setCurrentItem(0); //về câu 1
+
+        tvXemDiem.setVisibility(View.VISIBLE);
+        tvKiemTra.setVisibility(View.GONE);
+    }
+
+    public class CounterClass extends CountDownTimer {
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+
+        //milisInFuture : 60 *1000
+        //countDownInterval
+        public CounterClass(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            String countTime = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+            tvTimer.setText(countTime); //SetText cho textview hiện thị thời gian.
+        }
+
+        @Override
+        public void onFinish() {
+            tvTimer.setText("00:00");  //SetText cho textview hiện thị thời gian.
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.quizz_app.ui.Slide;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,7 +24,9 @@ public class ScreenSlidePageFragment extends Fragment {
 
     ArrayList<CauHoi> ListcauHoi;
     public static final String ARG_PAGE = "page";//Key cho Bundle
-    private int mPageNumber;  //Vị trí trang hiện tại
+    public static final String ARG_CHECKANSWER = "checkAnswer";
+    public int mPageNumber;  //Vị trí trang hiện tại
+    public int checkAns; //Biến kiểm tra
 
     //Gọi các  thành phần xml
     TextView tvNum, tvCauHoi;
@@ -62,12 +65,14 @@ radioGroup = (RadioGroup) rootView.findViewById(R.id.radGroup);
         ScreenSlideActivity slideActivity = (ScreenSlideActivity) getActivity();
         ListcauHoi = slideActivity.getData();
         mPageNumber = getArguments().getInt(ARG_PAGE);
+        checkAns = getArguments().getInt(ARG_CHECKANSWER);
     }
 
-    public static ScreenSlidePageFragment Create(int pageNumber){
+    public static ScreenSlidePageFragment Create(int pageNumber, int checkAnswer){
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE,pageNumber);
+        args.putInt(ARG_CHECKANSWER, checkAnswer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -81,6 +86,14 @@ radioGroup = (RadioGroup) rootView.findViewById(R.id.radGroup);
         rad_B.setText(getItem(mPageNumber).getDapAn_B());
         rad_C.setText(getItem(mPageNumber).getDapAn_C());
         rad_D.setText(getItem(mPageNumber).getDapAn_D());
+
+        if(checkAns!=0){
+            rad_A.setClickable(false);
+            rad_B.setClickable(false);
+            rad_C.setClickable(false);
+            rad_D.setClickable(false);
+            getCheck(getItem(mPageNumber).getKetQua().toString());
+        }
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -107,5 +120,18 @@ radioGroup = (RadioGroup) rootView.findViewById(R.id.radGroup);
         } else if (ID == R.id.radD) {
             return "D";
         }else return "";
+    }
+
+    //Hàm kiểm tra câu đúng, nếu câu đúng thì đổi màu radio
+    private void getCheck(String ans){
+        if(ans.equals("A")==true){
+            rad_A.setBackgroundColor(Color.RED);
+        } else if (ans.equals("B")==true) {
+            rad_B.setBackgroundColor(Color.RED);
+        } else if (ans.equals("C")==true) {
+            rad_C.setBackgroundColor(Color.RED);
+        } else if (ans.equals("D")==true) {
+            rad_D.setBackgroundColor(Color.RED);
+        }else ;
     }
 }

@@ -1,6 +1,8 @@
 package com.example.quizz_app.ui.CauHoi;
 
-public class CauHoi {
+import java.io.Serializable;
+
+public class CauHoi implements Serializable { //Giúp truyền đối tượng
     private String MaBaiHoc;
     private String CauHoi;
     private String DapAn_A;
