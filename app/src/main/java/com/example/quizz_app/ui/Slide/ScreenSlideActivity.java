@@ -80,6 +80,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         tvXemDiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent1 = new Intent(ScreenSlideActivity.this, TestDoneActivity.class);
                 intent1.putExtra("list CauHoi", listCauHoi);
                 startActivity(intent1);

@@ -3,6 +3,7 @@ package com.example.quizz_app;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.quizz_app.ui.CauHoi.DBHelper;
 import com.google.android.material.snackbar.Snackbar;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.C, R.id.Java,R.id.php,R.id.python)
+                R.id.nav_home, R.id.C, R.id.Java,R.id.php,R.id.python,R.id.score)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -54,13 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(this);
         // Phương thức xoa database viết vào hàm MainActivity
-        //        try {
-//            db.deleteDataBase();
-//            Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            Toast.makeText(this, "bi loi rui", Toast.LENGTH_SHORT).show();
-//        }
+        dbHelper.deleteDataBase();
+        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+
         try {
             dbHelper.createDataBase();
         } catch (IOException e) {
@@ -86,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.python) {
                 navController.navigate(R.id.python);// Điều hướng màn hình đến fragment python
                 Snackbar.make(drawer, "Đã chọn môn Python", Snackbar.LENGTH_SHORT).show();
+            }else if (id == R.id.score) {
+                navController.navigate(R.id.score);// Điều hướng màn hình đến fragment score
+                Snackbar.make(drawer, "Xem điểm", Snackbar.LENGTH_SHORT).show();
             } else {
                 NavigationUI.onNavDestinationSelected(item, navController);
             }
