@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(this);
         // Phương thức xoa database viết vào hàm MainActivity
-        dbHelper.deleteDataBase();
-        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+        //dbHelper.deleteDataBase();
+        //Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
 
         try {
             dbHelper.createDataBase();

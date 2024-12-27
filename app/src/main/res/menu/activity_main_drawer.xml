@@ -28,11 +28,15 @@
                     android:id="@+id/python"
                     android:icon="@drawable/course_assign"
                     android:title="Python" />
-                <item
-                    android:id="@+id/score"
-                    android:icon="@drawable/course_assign"
-                    android:title="Danh sách điểm" />
             </group>
+        </menu>
+    </item>
+    <item android:title="Điểm">
+        <menu>
+            <item
+                android:id="@+id/score"
+                android:icon="@drawable/course_assign"
+                android:title="Danh sách điểm" />
         </menu>
     </item>
 </menu>

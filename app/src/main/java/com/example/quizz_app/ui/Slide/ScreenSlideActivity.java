@@ -1,6 +1,7 @@
 package com.example.quizz_app.ui.Slide;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,14 +9,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.quizz_app.MainActivity;
 import com.example.quizz_app.R;
 import com.example.quizz_app.ui.CauHoi.CauHoi;
 import com.example.quizz_app.ui.CauHoi.CauHoiController;
@@ -48,6 +52,8 @@ public class ScreenSlideActivity extends FragmentActivity {
     ArrayList<CauHoi> listCauHoi;
     CounterClass timer;
 
+    ImageView imgHome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         tvXemDiem = (TextView) findViewById(R.id.tvScore) ;
+        imgHome = (ImageView) findViewById(R.id.imgHome);
         tvKiemTra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +91,31 @@ public class ScreenSlideActivity extends FragmentActivity {
                 Intent intent1 = new Intent(ScreenSlideActivity.this, TestDoneActivity.class);
                 intent1.putExtra("list CauHoi", listCauHoi);
                 startActivity(intent1);
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ScreenSlideActivity.this);
+                builder.setIcon(R.drawable.exit);
+                builder.setTitle("Thông báo");
+                builder.setMessage("Bạn có muốn ngừng làm bài hay không");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ScreenSlideActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
             }
         });
 
