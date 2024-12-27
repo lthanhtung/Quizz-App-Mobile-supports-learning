@@ -37,7 +37,7 @@ public class ScoreController {
                 null, //Doi so dieu kiện where
                 null, //Bieu thuc GroupBy
                 null, //Bieu thuc Having
-                "id DESC", //Bieu thuc order by
+                "_id DESC", //Bieu thuc order by
                 null
                 );
         if (cursor!=null){

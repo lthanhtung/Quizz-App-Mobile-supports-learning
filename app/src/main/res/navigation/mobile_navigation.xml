@@ -34,4 +34,10 @@
         android:name="com.example.quizz_app.ui.python.PythonFragment"
         android:label="Python"
         tools:layout="@layout/fragment_python" />
+
+    <fragment
+        android:id="@+id/score"
+        android:name="com.example.quizz_app.ui.score.ScoreFragment"
+        android:label="Score"
+        tools:layout="@layout/fragment_score"/>
 </navigation>
