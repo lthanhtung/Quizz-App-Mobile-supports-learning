@@ -43,6 +43,9 @@ public class ScreenSlideActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private FragmentStateAdapter pagerAdapter;
+
+    private int currentQuestion = 0;
+
     public int checkAns = 0;
 
     TextView tvKiemTra, tvTimer, tvXemDiem;
@@ -54,6 +57,7 @@ public class ScreenSlideActivity extends FragmentActivity {
 
     ImageView imgHome;
 
+    //Khai báo 2 button thưc hiện chức năng chuyển màn hình câu hỏi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +70,15 @@ public class ScreenSlideActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
+        //Đảm bảo là viewPager sẽ điều khiển đúng trang
+        viewPager.setCurrentItem(currentQuestion);
 
         timer = new CounterClass(60*1000, 1000);
         tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         tvXemDiem = (TextView) findViewById(R.id.tvScore) ;
         imgHome = (ImageView) findViewById(R.id.imgHome);
+
         tvKiemTra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +147,22 @@ public class ScreenSlideActivity extends FragmentActivity {
     public ArrayList<CauHoi> getData(){
         return listCauHoi;
     }
+// Tạo phương thức chuyển câu hỏi tiếp theo
+    public void getCauSau(){
+        if (currentQuestion < SoCauhoi -1){
+            currentQuestion++;
+            viewPager.setCurrentItem(currentQuestion);
+        }
+    }
+// Tạo phương thức quay lại câu hỏi trước
+    public void getCauTruoc(){
+        if (currentQuestion >0){
+            currentQuestion--;
+            viewPager.setCurrentItem(currentQuestion);
+        }
+    }
+
+
 
     @Override
     public void onBackPressed() {

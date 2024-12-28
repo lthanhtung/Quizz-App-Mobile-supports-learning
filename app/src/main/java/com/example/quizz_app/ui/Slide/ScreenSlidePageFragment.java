@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -33,6 +34,10 @@ public class ScreenSlidePageFragment extends Fragment {
     RadioGroup radioGroup;
     RadioButton rad_A,rad_B,rad_C,rad_D;
 
+    Button buttonCauSau;
+    Button buttonCauTruoc;
+
+
 
     public ScreenSlidePageFragment() {
         // Required empty public constructor
@@ -52,11 +57,49 @@ rad_B = (RadioButton) rootView.findViewById(R.id.radB);
 rad_C = (RadioButton) rootView.findViewById(R.id.radC);
 rad_D = (RadioButton) rootView.findViewById(R.id.radD);
 radioGroup = (RadioGroup) rootView.findViewById(R.id.radGroup);
+//Lấy vị trí hiện tại và tổng số câu hỏi từ
 
+buttonCauTruoc = (Button) rootView.findViewById(R.id.buttonLeft);
+buttonCauSau = (Button) rootView.findViewById(R.id.buttonRight);
 
+// Ẩn button Câu Trước khi đã đến câu hỏi đầu tiên
+    if (mPageNumber == 0){
+        buttonCauTruoc.setVisibility(View.GONE);//Ẩn nút
+    }else{
+        buttonCauTruoc.setVisibility(View.VISIBLE);//Hiển thị nút
+    }
+// Ẩn button Câu Sau khi đã đến câu hỏi cuối cùng
+    if (mPageNumber ==ListcauHoi.size() - 1){
+        buttonCauSau.setVisibility(View.GONE);//Ẩn Nút
+    }else {
+        buttonCauSau.setVisibility(View.VISIBLE);//Hiển thị nút
+    }
+
+// Xử lý sự kiện khi ấn nút chuyển đến câu hỏi trước
+    buttonCauTruoc.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        //Gọi class Chuyển câu hỏi trong ScreenSlideActivity
+            ScreenSlideActivity slideActivity = (ScreenSlideActivity) getActivity();
+            if (slideActivity !=null){
+                slideActivity.getCauTruoc();
+            }
+        }
+    });
+// Xử lý sự kiện khi ấn nút chuyển đến câu hỏi trước
+buttonCauSau.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        ScreenSlideActivity slideActivity = (ScreenSlideActivity) getActivity();
+        if (slideActivity != null){
+            slideActivity.getCauSau();
+        }
+    }
+});
 
         return rootView;
     }
+    
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
