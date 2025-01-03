@@ -3,12 +3,15 @@ package com.example.quizz_app;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.quizz_app.ui.CauHoi.DBHelper;
+import com.example.quizz_app.ui.home.HomeFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -68,24 +71,16 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
                 navController.navigate(R.id.nav_home);// Điều hướng màn hình đến fragment Home
-                Snackbar.make(drawer, "Trang Chủ", Snackbar.LENGTH_SHORT).show();
-            }
-            else if (id == R.id.C) {
+            } else if (id == R.id.C) {
                 navController.navigate(R.id.C);// Điều hướng màn hình đến fragment C
-                Snackbar.make(drawer, "Đã chọn môn C", Snackbar.LENGTH_SHORT).show();
             } else if (id == R.id.Java) {
                 navController.navigate(R.id.Java);// Điều hướng màn hình đến fragment Java
-                //Thông báo màn hình được chọn
-                Snackbar.make(drawer, "Đã chọn môn Java", Snackbar.LENGTH_SHORT).show();
             } else if (id == R.id.php) {
                 navController.navigate(R.id.php);// Điều hướng màn hình đến fragment php
-                Snackbar.make(drawer, "Đã chọn môn PHP", Snackbar.LENGTH_SHORT).show();
             } else if (id == R.id.python) {
                 navController.navigate(R.id.python);// Điều hướng màn hình đến fragment python
-                Snackbar.make(drawer, "Đã chọn môn Python", Snackbar.LENGTH_SHORT).show();
             }else if (id == R.id.score) {
                 navController.navigate(R.id.score);// Điều hướng màn hình đến fragment score
-                Snackbar.make(drawer, "Xem điểm", Snackbar.LENGTH_SHORT).show();
             } else {
                 NavigationUI.onNavDestinationSelected(item, navController);
             }

@@ -73,7 +73,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         //Đảm bảo là viewPager sẽ điều khiển đúng trang
         viewPager.setCurrentItem(currentQuestion);
 
-        timer = new CounterClass(60*1000, 1000);
+        timer = new CounterClass(10*1000, 1000);
         tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         tvXemDiem = (TextView) findViewById(R.id.tvScore) ;
@@ -88,7 +88,6 @@ public class ScreenSlideActivity extends FragmentActivity {
         tvTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
         tvXemDiem.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +139,41 @@ public class ScreenSlideActivity extends FragmentActivity {
             listCauHoi = cauHoiController.getCauHoiNgauNhien(maMonHoc);
             SoCauhoi = listCauHoi.size();
         }
-
+//        Dialog dialog = new Dialog(this);
+//        dialog.setContentView(R.layout.check_answer_dialog);
+//
+//        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
+//        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
+//        gvLsQuestion.setAdapter(answerAdapter);
+//
+//        //Huỷ hộp thoại
+//        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                viewPager.setCurrentItem(position);
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        Button btnCancle, btnFinish;
+//        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
+//        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
+//        btnCancle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//        btnFinish.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                timer.cancel();
+//                result();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
 
     }
 //Tạo 1 phương thức để fragment lấy được data của từ activity
@@ -232,50 +265,49 @@ public class ScreenSlideActivity extends FragmentActivity {
         }
     }
 
-    public  void checkAnswer(){
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.check_answer_dialog);
-        dialog.setTitle("Danh sách câu trả lời");
-
-        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
-        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
-        gvLsQuestion.setAdapter(answerAdapter);
-
-        //Huỷ hộp thoại
-        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                viewPager.setCurrentItem(position);
-                dialog.dismiss();
-            }
-        });
-
-        Button btnCancle, btnFinish;
-        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
-        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
-        btnCancle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        btnFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timer.cancel();
-                result();
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
+    public void checkAnswer(){
+//        Dialog dialog = new Dialog(this);
+//        dialog.setContentView(R.layout.check_answer_dialog);
+//
+//        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
+//        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
+//        gvLsQuestion.setAdapter(answerAdapter);
+//
+//        //Huỷ hộp thoại
+//        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                viewPager.setCurrentItem(position);
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        Button btnCancle, btnFinish;
+//        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
+//        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
+//        btnCancle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//        btnFinish.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                timer.cancel();
+//                result();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
     }
 
     public void result(){
         checkAns = 1;
         //if (viewPager.getCurrentItem() >= 5) viewPager.setCurrentItem(viewPager.getCurrentItem()-4);
         //else if (viewPager.getCurrentItem() <5) viewPager.setCurrentItem(viewPager.getCurrentItem()+4);
-        viewPager.setCurrentItem(0); //về câu 1
+        viewPager.setCurrentItem(15); //về câu 1
 
         tvXemDiem.setVisibility(View.VISIBLE);
         tvKiemTra.setVisibility(View.GONE);
@@ -305,7 +337,10 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         @Override
         public void onFinish() {
+            //Dialog dialog = new Dialog(this);
             tvTimer.setText("00:00");  //SetText cho textview hiện thị thời gian.
+            result();
+            //dialog.dismiss();
         }
     }
 }
