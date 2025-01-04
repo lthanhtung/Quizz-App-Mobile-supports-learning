@@ -1,8 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfac1"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -108,24 +109,41 @@
                 <Button
                     android:id="@+id/buttonLeft"
                     android:layout_width="15dp"
-                    android:layout_height="33dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/left" />
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="197dp"
-                    android:layout_height="60dp"
+                    android:layout_width="145dp"
+                    android:layout_height="43dp"
                     android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/buttonRight"
                     android:layout_width="15dp"
-                    android:layout_height="33dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/right"/>
+                    android:background="@drawable/right" />
 
             </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <GridView
+                    android:id="@+id/gvLsQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="56dp"
+                    android:numColumns="3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>

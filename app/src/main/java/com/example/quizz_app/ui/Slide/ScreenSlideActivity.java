@@ -73,7 +73,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         //Đảm bảo là viewPager sẽ điều khiển đúng trang
         viewPager.setCurrentItem(currentQuestion);
 
-        timer = new CounterClass(10*1000, 1000);
+        timer = new CounterClass(60*1000, 1000);
         tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
         tvTimer = (TextView) findViewById(R.id.tvTimer);
         tvXemDiem = (TextView) findViewById(R.id.tvScore) ;
@@ -307,7 +307,8 @@ public class ScreenSlideActivity extends FragmentActivity {
         checkAns = 1;
         //if (viewPager.getCurrentItem() >= 5) viewPager.setCurrentItem(viewPager.getCurrentItem()-4);
         //else if (viewPager.getCurrentItem() <5) viewPager.setCurrentItem(viewPager.getCurrentItem()+4);
-        viewPager.setCurrentItem(15); //về câu 1
+        currentQuestion =0;
+        viewPager.setCurrentItem(currentQuestion); //về câu 1
 
         tvXemDiem.setVisibility(View.VISIBLE);
         tvKiemTra.setVisibility(View.GONE);
