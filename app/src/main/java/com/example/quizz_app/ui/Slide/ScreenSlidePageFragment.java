@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -96,6 +98,20 @@ buttonCauSau.setOnClickListener(new View.OnClickListener() {
         }
     }
 });
+
+//    GridView gridViewListQuestion = rootView.findViewById(R.id.gvListQuestion);
+//    CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(ListcauHoi,getContext());
+//    gridViewListQuestion.setAdapter(answerAdapter);
+//
+//    gridViewListQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        @Override
+//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//            ScreenSlideActivity slideActivity = (ScreenSlideActivity) getActivity();
+//            if (slideActivity !=null){
+//                slideActivity.setCurrentQuestion(position);
+//            }
+//        }
+//    });
 
         return rootView;
     }

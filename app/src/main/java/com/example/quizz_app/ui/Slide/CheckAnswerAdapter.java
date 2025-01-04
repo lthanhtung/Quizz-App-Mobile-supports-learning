@@ -38,6 +38,7 @@ public class CheckAnswerAdapter extends BaseAdapter {
         return 0;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         CauHoi data = (CauHoi) getItem(position);
@@ -54,6 +55,7 @@ public class CheckAnswerAdapter extends BaseAdapter {
         int i = position+1;
         holder.tvNumAns.setText("Câu "+ i + ": ");
         holder.tvYourAns.setText(data.getTraLoi());
+
         return convertView;
     }
 

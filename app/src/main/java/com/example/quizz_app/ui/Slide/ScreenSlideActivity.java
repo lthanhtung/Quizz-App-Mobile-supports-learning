@@ -72,6 +72,13 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         //Đảm bảo là viewPager sẽ điều khiển đúng trang
         viewPager.setCurrentItem(currentQuestion);
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                currentQuestion = position;
+            }
+        });
 
         timer = new CounterClass(60*1000, 1000);
         tvKiemTra = (TextView)findViewById(R.id.tvKiemTra);
@@ -266,53 +273,61 @@ public class ScreenSlideActivity extends FragmentActivity {
     }
 
     public void checkAnswer(){
-//        Dialog dialog = new Dialog(this);
-//        dialog.setContentView(R.layout.check_answer_dialog);
-//
-//        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
-//        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
-//        gvLsQuestion.setAdapter(answerAdapter);
-//
-//        //Huỷ hộp thoại
-//        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                viewPager.setCurrentItem(position);
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        Button btnCancle, btnFinish;
-//        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
-//        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
-//        btnCancle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//        btnFinish.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                timer.cancel();
-//                result();
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        dialog.show();
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.check_answer_dialog);
+
+        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
+        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
+        gvLsQuestion.setAdapter(answerAdapter);
+
+        //Huỷ hộp thoại
+        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                currentQuestion = position;
+                viewPager.setCurrentItem(position);
+                dialog.dismiss();
+            }
+        });
+
+        Button btnCancle, btnFinish;
+        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
+        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timer.cancel();
+                result();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     public void result(){
         checkAns = 1;
         //if (viewPager.getCurrentItem() >= 5) viewPager.setCurrentItem(viewPager.getCurrentItem()-4);
         //else if (viewPager.getCurrentItem() <5) viewPager.setCurrentItem(viewPager.getCurrentItem()+4);
-        currentQuestion =0;
+
+        currentQuestion = 0;
         viewPager.setCurrentItem(currentQuestion); //về câu 1
 
         tvXemDiem.setVisibility(View.VISIBLE);
         tvKiemTra.setVisibility(View.GONE);
     }
+
+//    //Chuyển đến câu hỏi khi bấm nút
+//    public void setCurrentQuestion(int position){
+//        viewPager.setCurrentItem(position,true);
+//
+//    }
 
     public class CounterClass extends CountDownTimer {
         /**
