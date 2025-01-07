@@ -146,42 +146,6 @@ public class ScreenSlideActivity extends FragmentActivity {
             listCauHoi = cauHoiController.getCauHoiNgauNhien(maMonHoc);
             SoCauhoi = listCauHoi.size();
         }
-//        Dialog dialog = new Dialog(this);
-//        dialog.setContentView(R.layout.check_answer_dialog);
-//
-//        CheckAnswerAdapter answerAdapter = new CheckAnswerAdapter(listCauHoi, this);
-//        GridView gvLsQuestion = (GridView) dialog.findViewById(R.id.gvLsQuestion);
-//        gvLsQuestion.setAdapter(answerAdapter);
-//
-//        //Huỷ hộp thoại
-//        gvLsQuestion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                viewPager.setCurrentItem(position);
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        Button btnCancle, btnFinish;
-//        btnCancle = (Button) dialog.findViewById(R.id.btnCancle);
-//        btnFinish = (Button) dialog.findViewById(R.id.btnFinish);
-//        btnCancle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//        btnFinish.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                timer.cancel();
-//                result();
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        dialog.show();
-
     }
 //Tạo 1 phương thức để fragment lấy được data của từ activity
     public ArrayList<CauHoi> getData(){
