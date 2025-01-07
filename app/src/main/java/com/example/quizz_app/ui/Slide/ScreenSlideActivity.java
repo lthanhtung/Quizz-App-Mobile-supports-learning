@@ -147,10 +147,6 @@ public class ScreenSlideActivity extends FragmentActivity {
             listCauHoi = cauHoiController.getCauHoiNgauNhien(maMonHoc);
             SoCauhoi = listCauHoi.size();
         }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     }
 //Tạo 1 phương thức để fragment lấy được data của từ activity
     public ArrayList<CauHoi> getData(){
