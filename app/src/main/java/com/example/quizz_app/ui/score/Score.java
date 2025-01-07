@@ -3,13 +3,13 @@ package com.example.quizz_app.ui.score;
 public class Score {
     private int id;
     private String name;
-    private String room;
+    private String mamonhoc;
     private int score;
     private String date;
 
-    public Score(String name, String room, int score) {
+    public Score(String name, String mamonhoc, int score) {
         this.name = name;
-        this.room = room;
+        this.mamonhoc = mamonhoc;
         this.score = score;
     }
 
@@ -29,12 +29,12 @@ public class Score {
         this.name = name;
     }
 
-    public String getRoom() {
-        return room;
+    public String getMamonhoc() {
+        return mamonhoc;
     }
 
-    public void setRoom(String room) {
-        this.room = room;
+    public void setMamonhoc(String mamonhoc) {
+        this.mamonhoc = mamonhoc;
     }
 
     public int getScore() {

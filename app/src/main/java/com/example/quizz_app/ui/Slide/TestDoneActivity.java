@@ -2,6 +2,8 @@ package com.example.quizz_app.ui.Slide;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,8 @@ import java.util.ArrayList;
 
 public class TestDoneActivity extends AppCompatActivity {
 
+    SQLiteDatabase database = null;
+
     ArrayList<CauHoi> listCauHoiBanDau = new ArrayList<CauHoi>();
     int NumNoAns = 0;
     int NumTrue = 0;
@@ -43,8 +47,14 @@ public class TestDoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_done);
         scoreController = new ScoreController(TestDoneActivity.this);
 
+        database = openOrCreateDatabase("Quizz_database.db", MODE_PRIVATE, null);
+
         Intent intent = getIntent();
         listCauHoiBanDau = (ArrayList<CauHoi>) intent.getExtras().getSerializable("list CauHoi");
+        String monhoc = intent.getStringExtra("monhoc");
+
+        Cursor c = database.query("MonHoc", null, "MaMonHoc = ?", new String[]{monhoc},
+                null, null, null, null);
         begin();
         checkResult();
         TotalScore = NumTrue * 10;
@@ -85,7 +95,6 @@ public class TestDoneActivity extends AppCompatActivity {
                 builder.setView(view);
 
                 EditText edtName = (EditText) view.findViewById(R.id.edtName);
-                EditText edtRoom = (EditText) view.findViewById(R.id.edtRoom);
                 TextView tvScore = (TextView) view.findViewById(R.id.tvScore);
                 int numTotal = NumTrue * 10;
                 tvScore.setText(numTotal+" điểm");
@@ -95,11 +104,15 @@ public class TestDoneActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String name = edtName.getText().toString();
-                        String room = edtRoom.getText().toString();
-                        scoreController.insertScore(name,numTotal,room);
-                        Toast.makeText(TestDoneActivity.this, "Lưu điểm thành công",Toast.LENGTH_LONG).show();
-                        finish();
-                        dialog.dismiss();
+                        if (c.moveToFirst()){
+                            String mamonhoc = c.getString(1);
+                            scoreController.insertScore(name, numTotal, mamonhoc);
+                            Toast.makeText(TestDoneActivity.this, "Lưu điểm thành công", Toast.LENGTH_LONG).show();
+                            finish();
+                            dialog.dismiss();
+                        }else {
+                            Toast.makeText(TestDoneActivity.this, "Không tìm thấy dữ liệu", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {

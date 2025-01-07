@@ -11,7 +11,17 @@
         android:layout_weight="1"
         android:text="Trọng"
         android:textSize="16dp"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/tvSubjectStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="C"
+        android:textSize="16dp"
+        android:padding="5dp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/tvScoreStudent"
@@ -19,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="5dp"
-        android:gravity="right"
+        android:gravity="center"
         android:textSize="16dp"
         android:layout_marginRight="15dp"
         android:text="100" />

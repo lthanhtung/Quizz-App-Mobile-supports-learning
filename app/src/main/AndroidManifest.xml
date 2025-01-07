@@ -14,6 +14,7 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.Slide.TestDoneActivity"
+            android:label="@string/test_done"
             android:exported="false" />
         <activity
             android:name=".ui.BaiTap.BaiHocActivity"

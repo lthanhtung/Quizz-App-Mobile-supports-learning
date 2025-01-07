@@ -49,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         DBHelper dbHelper = new DBHelper(this);
+<<<<<<< Updated upstream
+=======
+        // Phương thức xoa database viết vào hàm MainActivity
+//        dbHelper.deleteDataBase();
+//        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+
+>>>>>>> Stashed changes
         try {
             dbHelper.createDataBase();
         } catch (IOException e) {

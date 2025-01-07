@@ -38,6 +38,6 @@
     <fragment
         android:id="@+id/score"
         android:name="com.example.quizz_app.ui.score.ScoreFragment"
-        android:label="Score"
+        android:label="Danh sách điểm"
         tools:layout="@layout/fragment_score"/>
 </navigation>
