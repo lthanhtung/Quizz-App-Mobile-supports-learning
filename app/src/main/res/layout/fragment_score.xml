@@ -8,15 +8,41 @@
     tools:context=".ui.score.ScoreFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textSize="23sp"
-        android:gravity="center"
-        android:background="#94A8E0"
-        android:text="Danh sách điểm" />
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:text="Tên" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:text="Môn" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:text="Điểm" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

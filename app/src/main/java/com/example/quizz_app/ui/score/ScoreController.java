@@ -17,12 +17,12 @@ public class ScoreController {
         dbHelper = new DBHelper(context);
     }
 
-    public void insertScore(String name, int score, String room){
+    public void insertScore(String name, int score, String mamonhoc){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("score",score);
-        values.put("room",room);
+        values.put("mamonhoc",mamonhoc);
         db.insert("tbscore",null,values);
         db.close();
     }
@@ -37,7 +37,7 @@ public class ScoreController {
                 null, //Doi so dieu kiện where
                 null, //Bieu thuc GroupBy
                 null, //Bieu thuc Having
-                "_id DESC", //Bieu thuc order by
+                "Score DESC", //Bieu thuc order by
                 null
                 );
         if (cursor!=null){

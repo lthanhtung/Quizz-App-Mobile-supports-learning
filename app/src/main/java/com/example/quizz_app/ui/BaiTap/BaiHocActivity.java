@@ -84,6 +84,7 @@ public class BaiHocActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(BaiHocActivity.this, ScreenSlideActivity.class);
             intent.putExtra("MaBaiHoc",maBaiHoc);
+            intent.putExtra("MaMonHoc",subject);
             startActivity(intent);
         });
     }

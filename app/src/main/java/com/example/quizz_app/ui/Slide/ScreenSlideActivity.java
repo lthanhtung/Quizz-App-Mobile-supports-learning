@@ -69,6 +69,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
+        String maMonHoc = getIntent().getStringExtra("MaMonHoc");
 
         //Đảm bảo là viewPager sẽ điều khiển đúng trang
         viewPager.setCurrentItem(currentQuestion);
@@ -103,6 +104,7 @@ public class ScreenSlideActivity extends FragmentActivity {
                 finish();
                 Intent intent1 = new Intent(ScreenSlideActivity.this, TestDoneActivity.class);
                 intent1.putExtra("list CauHoi", listCauHoi);
+                intent1.putExtra("monhoc", maMonHoc);
                 startActivity(intent1);
             }
         });
@@ -135,7 +137,6 @@ public class ScreenSlideActivity extends FragmentActivity {
         timer.start();
         // Nhận thông tin mã bài học từ Intent BaiHocActivity
         String maBaiHoc = getIntent().getStringExtra("MaBaiHoc");
-        String maMonHoc = getIntent().getStringExtra("MaMonHoc");
         cauHoiController = new CauHoiController(this);
         listCauHoi = new ArrayList<CauHoi>();
         if (maBaiHoc !=null){

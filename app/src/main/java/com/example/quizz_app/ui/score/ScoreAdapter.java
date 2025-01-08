@@ -26,8 +26,10 @@ public class ScoreAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         TextView tvScoreStudent = (TextView) view.findViewById(R.id.tvScoreStudent);
         TextView tvNameStudent = (TextView) view.findViewById(R.id.tvNameStudent);
+        TextView tvSubjectStudent = (TextView) view.findViewById(R.id.tvSubjectStudent);
 
         tvNameStudent.setText(cursor.getString(1));
+        tvSubjectStudent.setText(cursor.getString(4));
         tvScoreStudent.setText(cursor.getInt(2)+"");
     }
 }

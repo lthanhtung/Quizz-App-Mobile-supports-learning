@@ -36,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+//        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null)
+//                        .setAnchorView(R.id.fab).show();
+//            }
+//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -49,11 +57,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         DBHelper dbHelper = new DBHelper(this);
+        // Phương thức xoa database viết vào hàm MainActivity
+//        dbHelper.deleteDataBase();
+//        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+
         try {
             dbHelper.createDataBase();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
@@ -74,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             drawer.closeDrawers();
             return true;
         });
+
     }
 
     @Override
